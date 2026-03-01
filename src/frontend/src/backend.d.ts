@@ -7,13 +7,13 @@ export interface None {
     __kind__: "None";
 }
 export type Option<T> = Some<T> | None;
+export interface DailyStatsView {
+    date: string;
+    timeBlocks: Array<TimeBlock>;
+}
 export interface TimeBlock {
     hours: bigint;
     name: string;
-}
-export interface DailyStats {
-    date: string;
-    timeBlocks: Array<TimeBlock>;
 }
 export interface Goal {
     title: string;
@@ -25,8 +25,8 @@ export interface backendInterface {
     addGoal(title: string, description: string): Promise<void>;
     completeGoal(title: string): Promise<void>;
     deleteGoal(title: string): Promise<void>;
-    getAllStats(): Promise<Array<DailyStats>>;
+    getAllStats(): Promise<Array<DailyStatsView>>;
     getGoals(): Promise<Array<Goal>>;
     getGoalsCount(): Promise<bigint>;
-    saveDailyStats(date: string, timeBlocks: Array<TimeBlock>): Promise<void>;
+    saveDailyStats(date: string, timeBlocksArray: Array<TimeBlock>): Promise<void>;
 }

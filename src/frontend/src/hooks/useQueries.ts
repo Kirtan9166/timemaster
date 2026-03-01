@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import type { Goal, TimeBlock } from "../backend.d";
+import type { DailyStatsView, Goal, TimeBlock } from "../backend.d";
 import { useActor } from "./useActor";
 
 export function useGetGoals() {
@@ -28,7 +28,7 @@ export function useGetGoalsCount() {
 
 export function useGetAllStats() {
   const { actor, isFetching } = useActor();
-  return useQuery({
+  return useQuery<DailyStatsView[]>({
     queryKey: ["allStats"],
     queryFn: async () => {
       if (!actor) return [];

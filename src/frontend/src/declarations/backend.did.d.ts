@@ -10,7 +10,10 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
-export interface DailyStats { 'date' : string, 'timeBlocks' : Array<TimeBlock> }
+export interface DailyStatsView {
+  'date' : string,
+  'timeBlocks' : Array<TimeBlock>,
+}
 export interface Goal {
   'title' : string,
   'createdAt' : bigint,
@@ -22,7 +25,7 @@ export interface _SERVICE {
   'addGoal' : ActorMethod<[string, string], undefined>,
   'completeGoal' : ActorMethod<[string], undefined>,
   'deleteGoal' : ActorMethod<[string], undefined>,
-  'getAllStats' : ActorMethod<[], Array<DailyStats>>,
+  'getAllStats' : ActorMethod<[], Array<DailyStatsView>>,
   'getGoals' : ActorMethod<[], Array<Goal>>,
   'getGoalsCount' : ActorMethod<[], bigint>,
   'saveDailyStats' : ActorMethod<[string, Array<TimeBlock>], undefined>,

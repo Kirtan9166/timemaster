@@ -74,11 +74,13 @@ export default {
           orange: "oklch(var(--neon-orange))",
           red: "oklch(var(--neon-red))",
           yellow: "oklch(var(--neon-yellow))",
+          gold: "oklch(var(--gold))",
+          blue: "oklch(var(--neon-blue))",
         },
       },
       fontFamily: {
-        display: ["'Sora'", "'Outfit'", "'Bricolage Grotesque'", "system-ui", "sans-serif"],
-        body: ["'Outfit'", "'General Sans'", "system-ui", "sans-serif"],
+        display: ["'Orbitron'", "'Sora'", "'Bricolage Grotesque'", "system-ui", "sans-serif"],
+        body: ["'Poppins'", "'Outfit'", "'General Sans'", "system-ui", "sans-serif"],
         mono: ["'JetBrains Mono'", "'Geist Mono'", "monospace"],
       },
       borderRadius: {
@@ -88,14 +90,16 @@ export default {
         xl: "calc(var(--radius) + 4px)",
         "2xl": "calc(var(--radius) + 10px)",
       },
-      boxShadow: {
-        xs: "0 1px 2px 0 rgba(0,0,0,0.05)",
-        "neon-cyan": "0 0 20px oklch(0.78 0.18 195 / 0.4), 0 0 40px oklch(0.78 0.18 195 / 0.2)",
-        "neon-violet": "0 0 20px oklch(0.65 0.22 280 / 0.4), 0 0 40px oklch(0.65 0.22 280 / 0.2)",
-        "neon-green": "0 0 20px oklch(0.82 0.18 142 / 0.4)",
-        "neon-red": "0 0 20px oklch(0.63 0.25 25 / 0.4)",
-        glass: "0 8px 32px oklch(0.07 0.012 260 / 0.8), inset 0 1px 0 oklch(1 0 0 / 0.05)",
-      },
+        boxShadow: {
+          xs: "0 1px 2px 0 rgba(0,0,0,0.05)",
+          "neon-cyan": "0 0 20px oklch(0.78 0.18 195 / 0.4), 0 0 40px oklch(0.78 0.18 195 / 0.2)",
+          "neon-violet": "0 0 20px oklch(0.65 0.22 280 / 0.4), 0 0 40px oklch(0.65 0.22 280 / 0.2)",
+          "neon-green": "0 0 20px oklch(0.82 0.18 142 / 0.4)",
+          "neon-red": "0 0 20px oklch(0.63 0.25 25 / 0.4)",
+          "neon-gold": "0 0 20px oklch(0.82 0.18 85 / 0.4), 0 0 40px oklch(0.82 0.18 85 / 0.2)",
+          "neon-blue": "0 0 20px oklch(0.68 0.22 230 / 0.4), 0 0 40px oklch(0.68 0.22 230 / 0.2)",
+          glass: "0 8px 32px oklch(0.07 0.012 260 / 0.8), inset 0 1px 0 oklch(1 0 0 / 0.05)",
+        },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

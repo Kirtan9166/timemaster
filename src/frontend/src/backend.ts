@@ -89,13 +89,13 @@ export class ExternalBlob {
         return this;
     }
 }
+export interface DailyStatsView {
+    date: string;
+    timeBlocks: Array<TimeBlock>;
+}
 export interface TimeBlock {
     hours: bigint;
     name: string;
-}
-export interface DailyStats {
-    date: string;
-    timeBlocks: Array<TimeBlock>;
 }
 export interface Goal {
     title: string;
@@ -107,10 +107,10 @@ export interface backendInterface {
     addGoal(title: string, description: string): Promise<void>;
     completeGoal(title: string): Promise<void>;
     deleteGoal(title: string): Promise<void>;
-    getAllStats(): Promise<Array<DailyStats>>;
+    getAllStats(): Promise<Array<DailyStatsView>>;
     getGoals(): Promise<Array<Goal>>;
     getGoalsCount(): Promise<bigint>;
-    saveDailyStats(date: string, timeBlocks: Array<TimeBlock>): Promise<void>;
+    saveDailyStats(date: string, timeBlocksArray: Array<TimeBlock>): Promise<void>;
 }
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
@@ -156,7 +156,7 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async getAllStats(): Promise<Array<DailyStats>> {
+    async getAllStats(): Promise<Array<DailyStatsView>> {
         if (this.processError) {
             try {
                 const result = await this.actor.getAllStats();

@@ -9,7 +9,7 @@
 import { IDL } from '@icp-sdk/core/candid';
 
 export const TimeBlock = IDL.Record({ 'hours' : IDL.Nat, 'name' : IDL.Text });
-export const DailyStats = IDL.Record({
+export const DailyStatsView = IDL.Record({
   'date' : IDL.Text,
   'timeBlocks' : IDL.Vec(TimeBlock),
 });
@@ -24,7 +24,7 @@ export const idlService = IDL.Service({
   'addGoal' : IDL.Func([IDL.Text, IDL.Text], [], []),
   'completeGoal' : IDL.Func([IDL.Text], [], []),
   'deleteGoal' : IDL.Func([IDL.Text], [], []),
-  'getAllStats' : IDL.Func([], [IDL.Vec(DailyStats)], ['query']),
+  'getAllStats' : IDL.Func([], [IDL.Vec(DailyStatsView)], ['query']),
   'getGoals' : IDL.Func([], [IDL.Vec(Goal)], ['query']),
   'getGoalsCount' : IDL.Func([], [IDL.Nat], ['query']),
   'saveDailyStats' : IDL.Func([IDL.Text, IDL.Vec(TimeBlock)], [], []),
@@ -34,7 +34,7 @@ export const idlInitArgs = [];
 
 export const idlFactory = ({ IDL }) => {
   const TimeBlock = IDL.Record({ 'hours' : IDL.Nat, 'name' : IDL.Text });
-  const DailyStats = IDL.Record({
+  const DailyStatsView = IDL.Record({
     'date' : IDL.Text,
     'timeBlocks' : IDL.Vec(TimeBlock),
   });
@@ -49,7 +49,7 @@ export const idlFactory = ({ IDL }) => {
     'addGoal' : IDL.Func([IDL.Text, IDL.Text], [], []),
     'completeGoal' : IDL.Func([IDL.Text], [], []),
     'deleteGoal' : IDL.Func([IDL.Text], [], []),
-    'getAllStats' : IDL.Func([], [IDL.Vec(DailyStats)], ['query']),
+    'getAllStats' : IDL.Func([], [IDL.Vec(DailyStatsView)], ['query']),
     'getGoals' : IDL.Func([], [IDL.Vec(Goal)], ['query']),
     'getGoalsCount' : IDL.Func([], [IDL.Nat], ['query']),
     'saveDailyStats' : IDL.Func([IDL.Text, IDL.Vec(TimeBlock)], [], []),

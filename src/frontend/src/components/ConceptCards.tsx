@@ -117,7 +117,7 @@ function ConceptCard({ concept, index }: ConceptCardProps) {
       initial={{ opacity: 0, x: isLeft ? -80 : 80, y: 20 }}
       animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
       transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-      className="w-full"
+      className={`w-full ${index % 3 === 0 ? "float-anim-slow" : index % 3 === 1 ? "float-anim-delay" : "float-anim-slow"}`}
     >
       <div
         className={`glass-card rounded-2xl p-7 transition-all duration-300 cursor-default ${colors.glow}`}
@@ -203,10 +203,12 @@ export default function ConceptCards() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <p className="section-label mb-4">Core Principles</p>
-          <h2 className="text-4xl md:text-5xl font-black font-display text-foreground mb-4">
-            Master the <span className="neon-text-violet">Science</span> of{" "}
-            <span className="neon-text-cyan">Time</span>
+          <div className="flex justify-center mb-4">
+            <p className="section-label">Core Principles</p>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black font-display text-foreground mb-4 tracking-tight">
+            Master the <span className="neon-text-blue">Science</span> of{" "}
+            <span className="neon-text-gold">Time</span>
           </h2>
           <p className="text-lg text-muted-foreground font-body max-w-2xl mx-auto">
             Five battle-tested principles used by the world's most productive

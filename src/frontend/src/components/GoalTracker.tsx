@@ -1,3 +1,4 @@
+import { Skeleton } from "@/components/ui/skeleton";
 import { Check, Loader2, Trash2 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
@@ -31,8 +32,13 @@ export default function GoalTracker() {
       setNewDesc("");
       setIsAdding(false);
       toast.success("Goal added!");
-    } catch {
-      toast.error("Failed to add goal");
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      if (message.includes("No actor")) {
+        toast.error("Still connecting — please try again in a moment");
+      } else {
+        toast.error("Failed to add goal");
+      }
     }
   };
 
@@ -121,14 +127,25 @@ export default function GoalTracker() {
       {/* Goals list */}
       <div className="flex-1 overflow-y-auto space-y-2 max-h-64 pr-1">
         {isLoading ? (
-          <div className="flex items-center justify-center py-8">
-            <Loader2 className="w-5 h-5 animate-spin text-muted-foreground" />
+          <div className="space-y-2">
+            {[1, 2, 3].map((n) => (
+              <div
+                key={n}
+                className="flex items-center gap-3 p-3 rounded-lg border border-[oklch(0.25_0.04_255/0.3)] bg-[oklch(0.09_0.015_260/0.5)]"
+              >
+                <Skeleton className="w-5 h-5 rounded-full flex-shrink-0 bg-[oklch(0.15_0.02_255)]" />
+                <div className="flex-1 space-y-1.5">
+                  <Skeleton className="h-3 w-3/4 bg-[oklch(0.15_0.02_255)]" />
+                  <Skeleton className="h-2.5 w-1/2 bg-[oklch(0.13_0.018_255)]" />
+                </div>
+              </div>
+            ))}
           </div>
         ) : goals.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-8 text-center">
             <span className="text-3xl mb-2">🎯</span>
             <p className="text-sm text-muted-foreground font-body">
-              No goals yet. Add your first one!
+              Add your first goal to get started!
             </p>
           </div>
         ) : (
